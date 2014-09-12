@@ -1,0 +1,56 @@
+<?php
+if (isset($this->ldap)):
+    $adldap = new adLDAP();
+    $adldap->authenticate(USER, PASSWORD);
+    ?>
+    <br /><br />
+
+    <h2 class="center" style="text-align: center;"><?php print $this->titulo; ?></h2>
+    <div id="pageContent"></div>
+    <div id="esconder">
+        <div id="page-wrapper" >
+
+
+
+            <div class="row center">
+                <div class="col-lg-9">   
+
+                    <div class="panel-body">
+
+                        <button  id="grupo" class="btn btn-success pull-right"  rel="<?php URL ?>grupo/novo"><i class="glyphicon glyphicon-saved ">Criar Novo Grupo</i></button>    
+                        <table class="table  table-condensed table-hover table-striped table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th>Grupos</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php if (isset($this->grupo) && !empty($this->grupo)): ?>
+                                    <?php foreach ($this->grupo as $grupo) { ?>
+
+
+                                        <tr>
+                                            <td><a><?php echo $grupo; ?></a></td>
+                                        </tr>
+
+                                    <?php }; ?>
+
+                                </tbody>
+
+                            </table>
+                        <?php else: ?>  <p class="alert alert-warning text-center">Nenhum Grupo Encontrado Verifica A Sua Conexão ao Servidor...</p>
+
+                        <?php endif; ?> <?php endif; ?>
+
+                </div>
+
+            </div>     
+
+
+        </div>
+
+    </div>
+</div>

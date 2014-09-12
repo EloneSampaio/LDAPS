@@ -1,0 +1,88 @@
+<div class="span10 " id="content" style="margin-left: 300px;">
+    <!-- validation -->
+    <div class="row-fluid">
+        <!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-right">Dados do Usuario</div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="span12">
+                    <!-- BEGIN FORM-->
+                    <form action="<?php print URL; ?>usuario/novo" id="usuario" class="form-horizontal" method="POST">
+                        <fieldset>
+
+
+                            <div class="control-group">
+                                <label class="control-label">Primeiro Nome<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input type="text" name="primeiro" data-required="1" class="span6 m-wrap" placeholder="usuario" value="<?php if (isset($this->dados) && !empty($this->dados))  print $this->dados['primeiro']; ?>"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Ultimo Nome<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input name="ultimo" type="text" class="span6 m-wrap" placeholder="usuario" value="<?php if (isset($this->dados) && !empty($this->dados))   print $this->dados['ultimo']; ?>"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Empresa<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input name="empresa" type="text" class="span6 m-wrap" placeholder="zap" value="<?php if (isset($this->dados) && !empty($this->dados))  print $this->dados['empresa']; ?>"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Contacto<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input name="telefone" id="telefone"type="tel" class="span6 m-wrap" placeholder="22222" value="<?php if (isset($this->dados) && !empty($this->dados))  print $this->dados['telefone']; ?>"/>
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Data<span class="required">*</span></label>
+                                <div class="controls">
+
+                                    <input type="text" data-field="datetime" readonly name="data">
+                                    <div id="dtBox"></div>
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Senha<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input type="text" class="span6 m-wrap"  name="senha" placeholder="senha" value="<?php if (isset($this->dados) && !empty($this->dados))  print $this->dados['senha']; ?>">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Confirmar senha<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input type="text" class="span6 m-wrap"  name="u_senha" placeholder="senha" value="<?php if (isset($this->dados) && !empty($this->dados))   print $this->dados['u_senha']; ?> ">
+                                </div>
+                            </div>
+
+
+
+                            <input type="hidden"  name="guardar" value="1">
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="novo">Salvar Dados</button>
+                                <button type="reset" class="btn">Cancelar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+        <!-- /block -->
+    </div>
+    <!-- /validation -->
+
+</div>
+</div>
+
+
+
+

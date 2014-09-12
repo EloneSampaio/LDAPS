@@ -1,0 +1,41 @@
+
+<div id="page-wrapper" >
+
+    <div class="row" style="margin-left: 70px;">
+        <div class="col-lg-9">   
+            <div class="panel-body">
+
+                <table class="table  table-condensed table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nome</th> 
+                            <th>Login</th>
+                            <th>Data de Expiracao</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <?php if (isset($this->usuario) AND ! empty($this->usuario)): ?>
+                        <tbody>
+                            <tr>
+                                <td><a href="#" id="dados" rel="<?php echo $this->usuario->samaccountname; ?>"><?php echo $this->usuario->displayName; ?></a></td>
+                                <td><?php echo $this->usuario->samaccountname; ?></td>
+                                <td><?php echo convert_AD_date($this->usuario->accountexpires); ?></td>
+                                <td><?php echo $this->usuario->enabled; ?></td>
+                                <td><a rel="<?php echo $this->usuario->samaccountname ?>" href="#" id="altera"><i class="glyphicon glyphicon-pencil">Alterar</i></a></td>
+                                <td><a rel="<?php echo $this->usuario->samaccountname ?>" href="#" id="delete"><i class="glyphicon glyphicon-trash">Apagar</i></a></td>
+
+                            </tr>
+
+                            <?php
+                        else: print '<div class="alert alert-danger">';
+                            print 'Usuario não encontrado';
+                            print'</div>';
+                        endif;
+                        ?>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3" id="sidebar">
+            <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                <li class="active">
+                    <a href="<?php print URL; ?>dashboard"><i class="icon-chevron-right"></i> Dashboard</a>
+                </li>
+                <?php if (isset($_layoutParam["menu"])): ?>
+                    <?php for ($i = 0; $i < count($_layoutParam["menu"]); $i++): ?>
+                        <?php (($item && $_layoutParam["menu"][$i]["id"] == $item) ? $item_style = "corrent" : $item_style = ""); ?> 
+
+                        <li><a id="cli" rel="<?php print $_layoutParam["menu"][$i]["id"]; ?>" href="<?php echo $_layoutParam["menu"][$i]["link"]; ?>" ><i class="icon-chevron-right"></i><?php echo $_layoutParam["menu"][$i]["titulo"]; ?></a></li>
+                        <?php
+                    endfor;
+                endif;
+                ?>
+            </ul>
+        </div>
+        <div class="span9" id="content">
+            <div class="row-fluid">
+                <div class="alert alert-success text-center">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4 class="text-center">Seja BemVindo ao Painel de Administração<?php print Session::get('nome'); ?></h4>
+                    O Seu Login foi feito com sucesso</div>
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="breadcrumb">
+                            <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+                            <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+                            <li>
+                                <a href="<?php print URL ?>"><img src="<?php URL?>public/img/zap.jpg" class="img-responsive"/></a> <span class="divider">/</span>	
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id='pageContent'></div>
+        </div>
+
+        <noscript>Para usar todas funcionalidades ativa o javascript no seu navegador</noscript> 
+
+
+        <?php if (isset($this->erro)): ?>
+            <?php print $this->erro; ?>
+
+        <?php endif; ?>
+
+        <?php if (isset($this->mensagem)): ?>
+            <?php print $this->mensagem; ?>
+        <?php endif; ?>
+
+
+
+       

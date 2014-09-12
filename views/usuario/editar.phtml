@@ -1,0 +1,49 @@
+<?php
+if (isset($this->ldap))
+    $adldap = new adLDAP();
+$adldap->authenticate(USER, PASSWORD);
+?>
+
+<br /><br />
+<hr>
+
+<div class="row" style="margin-left: 80px;">
+    <div class="col-lg-9">   
+        <?php
+        $user = $adldap->user()->infoCollection("$this->usuario");
+        ?>
+        <form role="form" id="novo" method="post"  action="<?php print URL; ?>usuario/editarusuario" class="form form-horizontal" >
+            <hr>
+
+
+            <div class="form-group">
+                <label for="">Login</label>
+                <input type="text" class="form-control"  placeholder="Insira" name="login" value="<?php echo $user->samaccountname; ?>" />
+            </div>
+
+            <input type="hidden"  name="guardar" value="1">
+            <input type="hidden"  name="usuario" value="<?php echo $user->samaccountname; ?>">
+            <div class="form-group">
+
+                <!--  DateTime Input  -->
+                <p>DateTime : </p>
+                <input type="text" data-field="datetime" readonly name="data">
+
+
+
+                <div id="dtBox"></div>
+            </div>
+
+
+            <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-saved"></i>Atualizar Dados</button>
+        </form>
+
+
+
+
+    </div>
+</div>
+
+
+
+
