@@ -22,11 +22,12 @@
                             <th>Data de Criação</th>
                             <th>Data de Expiração</th>
                             <th>Criado Por</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <?php if (isset($this->usuario) && !empty($this->usuario)):  ?>
+                        <?php if (isset($this->usuario) && !empty($this->usuario)): ?>
 
                             <tr>
 
@@ -34,7 +35,8 @@
                                 <td><?php print $this->usuario->samaccountname; ?></td>
                                 <td><?php print $this->usuario->department; ?></td>
                                 <td><?php print convert_AD_date($this->usuario->accountexpires); ?></td>
-                                 <td><?php print $this->usuario->description; ?></td>
+                                <td><?php print $this->usuario->description; ?></td>
+                                <?php if (isset($this->status) && !empty($this->status)): ?> <td  class="text-error"><?php print $this->status; ?></td><?php else: print"<td class='text-success'>Conta Activa</td>"; endif; ?>
                             </tr>
                         </tbody>
                     </table>

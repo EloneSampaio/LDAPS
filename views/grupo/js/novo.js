@@ -2,7 +2,7 @@ $(document).ready(function(){
     
 $(document).on('click', '#grupo', function() {
 
-        setTimeout("$('#pageContent').load('http://172.16.17.22/Ldaps/grupo/novo');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.4.219/Ldaps/grupo/novo');", 1000);
         $("#esconder").hide();
     });
     

@@ -173,10 +173,23 @@ abstract class Controller {
         $date = new DateTime($data);
         $y = gmdate('d.m.Y H:i', $date->getTimestamp());
         $f = strtotime($y);
+
         $g = bcadd($f, "11644477200");
         $tempo = bcmul($g, "10000000");
         $win_time = ($f + 11644477200) * 10000000;
         return $win_time;
+    }
+
+    function apagarAuto() {
+
+        array_walk(glob($dir . '/*'), function ($fn) {
+            if (date("U", filectime($file) >= time() - 3600)):
+                if (is_file($fn))
+                    unlink($fn);
+
+            endif;
+        });
+        unlink($dir);
     }
 
     abstract public function index();
