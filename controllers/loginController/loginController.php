@@ -48,7 +48,7 @@ class LoginController extends Controller {
             $data['nome'] = $this->getTexto('nome');
 
             $linha = $this->_login->login($data);
-
+           
             if (!$linha) {
                 $this->view->erro = "Usuario ou Palavra Passe Incorreta";
                 $this->view->renderizar("index");
@@ -57,8 +57,9 @@ class LoginController extends Controller {
             
             Session::set("autenticado", true);
             Session::set('nivel', 'admin');
-            Session::set('user',$data['nome']);
+            Session::set('usuario', $data['nome']);
             Session::set('senha', $data['senha']);
+            Session::set('nome',$linha->displayName);
             Session::set('time', time());
             $this->redirecionar();
         }
@@ -67,7 +68,7 @@ class LoginController extends Controller {
     }
 
     public function logof() {
-        Session::destruir(array('autenticado', 'user', 'senha', 'nivel', 'time'));
+        Session::destruir(array('autenticado','usuario', 'nome','nivel', 'time'));
         $this->_login->logof();
         $this->redirecionar("login");
     }

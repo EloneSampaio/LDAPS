@@ -1,9 +1,14 @@
 $(document).ready(function() {
-    $('#tabs').tab();
-    //alterar um usuario
+    manipular_dados();
+    validar()
+});
+
+function manipular_dados() {
+    
+    
     $(document).on('click', '#usuario', function() {
 
-        setTimeout("$('#pageContent').load('http://localhost/Ldaps/usuario/novo');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.17.22/Ldaps/usuario/novo');", 1000);
         $("#esconder").hide();
     });
 
@@ -11,7 +16,7 @@ $(document).ready(function() {
 
         var id = $(this).attr('rel');
         console.log(id);
-        setTimeout("$('#pageContent').load('http://localhost/Ldaps/usuario/update/" + id + "');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.17.22/Ldaps/usuario/update/" + id + "');", 1000);
         $("#esconder").hide();
     });
 
@@ -23,7 +28,7 @@ $(document).ready(function() {
             //recebe o nome do usuario via atributo rel no formulario
             var id = $(this).attr('rel');
 
-            $.post("http://localhost/Ldaps/usuario/deletar/", {'id': id})
+            $.post("http://172.16.17.22/Ldaps/usuario/deletar/", {'id': id})
                     .done(function(data) {
                         console.log(data);
                     });
@@ -36,7 +41,7 @@ $(document).ready(function() {
             //recebe o nome do usuario via atributo rel no formulario
             var id = $(this).attr('rel');
 
-            $.post("http://localhost/Ldaps/usuario/retirar/", {'id': id})
+            $.post("http://172.16.17.22/Ldaps/usuario/retirar/", {'id': id})
                     .done(function(data) {
                         console.log(data);
 
@@ -51,7 +56,7 @@ $(document).ready(function() {
 
         var id = $(this).attr('rel');
         console.log(id);
-        setTimeout("$('#pageContent').load('http://localhost/Ldaps/usuario/dados/?id=" + id + "');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.17.22/Ldaps/usuario/dados/?id=" + id + "');", 1000);
         $("#esconder").hide();
     });
 
@@ -59,11 +64,12 @@ $(document).ready(function() {
     $(document).on('click', '#enviar', function() {
         var id = $("#nome").val();
 
-        setTimeout("$('#pageContent').load('http://localhost/Ldaps/usuario/pesquisa/?id=" + id + "');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.17.22/Ldaps/usuario/pesquisa/?id=" + id + "');", 1000);
         $("#esconder").hide();
 
     });
-});
+
+}
 
 function enviar() {
     $(document).on('submit', '#novogrupo', function() {
@@ -79,6 +85,50 @@ function enviar() {
     });
 
 
+}
+
+
+function validar() {
+
+    $("#formu").validate({
+        rules: {
+            primeiro: {
+                required: true,
+                minlength: 5
+            },
+            ultimo: {
+                required: true,
+                minlength: 5
+            },
+            empresa: {
+                required: true,
+                minlength: 5
+            },
+            telefone: {
+                required: true,
+                minlength: 8,
+                maxlength: 9
+            }
+
+
+        },
+        messages: {
+            primeiro: {
+                required: "Preencha um nome valido"
+            },
+            ultimo: {
+                required: "Preencha um nome valido"
+            },
+            empresa: {
+                required: "Preencha uma morada valida"
+
+            },
+            telefone: {
+                required: "Preencha um numero valido"
+
+            }
+        }
+    });
 }
 
 

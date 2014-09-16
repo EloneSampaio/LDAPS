@@ -11,7 +11,9 @@ define("USER", "ADMINISTRATOR");
 //senha do usuario
 define("PASSWORD", "FINS!234");
 //URL da aplicação
-define("URL", "http://localhost/Ldaps/");
+
+define("URL", "http://".$_SERVER['SERVER_ADDR']."/Ldaps/");
+
 //define a pasta layout com a pagina padrão de layout
 define("DEFAULT_LAYOUT", "default");
 //define a empresa

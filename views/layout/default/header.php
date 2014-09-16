@@ -41,14 +41,20 @@
 
             $(document).on('click', '#enviar', function() {
 
-                var id = $("#pesquisa").val();
+                
+                 var id = $("#pesquisa").val();
 
                 setTimeout("$('#pageContent').load('http://localhost/Ldaps/usuario/pesquisar/?id=" + id + "');", 1000);
                 $("#esconder").hide();
+                
 
             });
 
         });
+        
+        
+        
+        
     </script>
 
 
@@ -66,16 +72,14 @@
                 </a>
                 <a class="brand" href="<?php URL ?>index">ZAP</a>
                 <div class="nav-collapse collapse">
-                    <ul class="nav pull-right">
+                    <ul class="nav pull-right"> 
                         <li class="dropdown">
                             <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <?php print Session::get('nome'); ?> <i class="caret"></i>
 
                             </a>
+
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a tabindex="-1" href="#">Perfil</a>
-                                </li>
-                                <li class="divider"></li>
+
                                 <li>
                                     <a tabindex="-1" href="<?php print URL ?>login/logof">Sair</a>
                                 </li>
@@ -84,7 +88,7 @@
                     </ul>
 
                     <ul class="nav">
-                        
+
 
                         <?php if (isset($_layoutParam["menu"])): ?>
                             <?php for ($i = 0; $i < count($_layoutParam["menu"]); $i++): ?>

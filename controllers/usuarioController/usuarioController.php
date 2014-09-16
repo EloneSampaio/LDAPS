@@ -28,6 +28,7 @@ class UsuarioController extends Controller {
         $this->view->setJs(array("novo"));
         $this->view->link = "usuario/novo";
         $this->view->data = $this->getBibliotecas('convertData');
+        
         $this->view->titulo = "Usuarios";
 //        $this->view->setCss(array("css"));
         if (!Session::get('autenticado')) {
@@ -41,61 +42,35 @@ class UsuarioController extends Controller {
     }
 
     public function novo() {
+      
 
         if ($this->getInt("guardar") == 1) {
             $this->view->dados = $_POST;
 
-
-//            if (!$this->getTexto('primeiro')) {
+//
+//            if (!$this->alphaNumeric('primeiro')) {
 //                $this->view->erro = "O Campo Nome é Obrigatorio preencha-o";
 //                $this->view->renderizar("novo");
 //                exit;
 //            }
-//            if (!$this->getTexto('ultimo')) {
+//            if (!$this->alphaNumeric('ultimo')) {
 //                $this->view->erro = "O Campo Nome é Obrigatorio preencha-o";
 //                $this->view->renderizar("novo");
 //                exit;
 //            }
 //
 //
-//            if (!$this->getTexto('empresa')) {
+//            if (!$this->alphaNumeric('empresa')) {
 //                $this->view->erro = "O Campo empresa é Obrigatorio preencha-o";
 //                $this->view->renderizar("novo");
 //                exit;
 //            }
-//
-////            if (!$this->getInt('telefone')) {
-////                $this->view->erro = "O Campo telefone é Obrigatorio preencha-o";
-////                $this->view->renderizar("novo");
-////                exit;
-////            }
-//
-//
-//            if (!$this->getTexto('data')) {
-//                $this->view->erro = "O Campo data é Obrigatorio preencha-o";
+
+//            if (!$this->getInt('telefone')) {
+//                $this->view->erro = "O Campo telefone é Obrigatorio preencha-o";
 //                $this->view->renderizar("novo");
 //                exit;
 //            }
-//
-            if (!$this->getTexto('senha')) {
-                $this->view->erro = "O Campo senha é Obrigatorio preencha-o";
-                $this->view->renderizar("novo");
-                exit;
-            }
-
-            if (!$this->getTexto('u_senha')) {
-                $this->view->erro = "O Campo senha é Obrigatorio preencha-o";
-                $this->view->renderizar("novo");
-                exit;
-            }
-
-            if (!$this->getTexto('senha') == $this->getTexto('u_senha')) {
-                $this->view->erro = "As senhas não coincidem verificar porfavor";
-                $this->view->renderizar("novo");
-                exit;
-            }
-
-
 
             $data = array();
             $data['primeiro'] = $_POST['primeiro'];
@@ -103,7 +78,7 @@ class UsuarioController extends Controller {
             $data['empresa'] = $_POST['empresa'];
             $data['telefone'] = $_POST['telefone'];
             $data['data'] = $_POST['data'];
-            $data['senha'] = $_POST['senha'];
+            $data['senha'] = $this->geraSenha(6, TRUE, TRUE);
             $data['login'] = $_POST['primeiro'] . "." . $_POST['ultimo'];
             $v = $this->usuarios->novo_usuario($data);
             $this->usuarios->add_grupo($data['login']);
@@ -182,7 +157,15 @@ class UsuarioController extends Controller {
     function dados($id) {
         $this->view->data = $this->getBibliotecas('convertData');
         $this->view->setJs(array("novo"));
+        
+     
         $this->view->usuario = $this->usuarios->listarinfo($id);
+//           if($t=convert_AD_date($this->view->usuario->accountexpires) < $this->convertTimestamp(date("Y-m-d H:i:s")) ){
+//               print convert_AD_date($this->view->usuario->accountexpires); 
+//               //print $this->convertTimestamp(date("Y-m-d H:i:s"));
+//               exit;
+//               $this->view->status="Conta Expirada";
+//        }
         $this->view->renderizar("ver_dados");
     }
 

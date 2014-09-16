@@ -22,7 +22,7 @@ class GrupoModel extends Model {
 
         try {
             $adldap = new adLDAP();
-            $adldap->authenticate(Session::get('user'), Session::get('senha'));
+            $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
             $t = $adldap->group()->create($atributos);
             return $t;
         } catch (adLDAPException $e) {
@@ -34,7 +34,7 @@ class GrupoModel extends Model {
     public function listarAll() {
 
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $result = $adldap->group()->all();
         return $result;
     }
@@ -42,14 +42,14 @@ class GrupoModel extends Model {
     public function listar_info($dados) {
 
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $r = $adldap->group()->members($dados);
         return $r;
     }
 
     public function menbros_grupo() {
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         return $adldap->group()->members("Wireless-acess-guest");
     }
 
@@ -67,7 +67,7 @@ class GrupoModel extends Model {
     function lista($grupo, $usuario) {
 
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $result = $adldap->group()->addUser($grupo, $usuario);
         return $result;
     }

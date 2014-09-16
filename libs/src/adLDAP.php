@@ -806,7 +806,7 @@ class adLDAP {
         // Check every attribute to see if it contains 8bit characters and then UTF8 encode them
         array_walk($attributes, array($this, 'encode8bit'));
 
-        //if ($attributes["address_city"]){ $mod["l"][0]=$attributes["address_city"]; }
+        if ($attributes["address_city"]){ $mod["l"][0]=$attributes["address_city"]; }
         //if ($attributes["address_code"]){ $mod["postalCode"][0]=$attributes["address_code"]; }
         //if ($attributes["address_country"]){ $mod["countryCode"][0]=$attributes["address_country"]; } // use country codes?
         //if ($attributes["address_country"]){ $mod["c"][0]=$attributes["address_country"]; }
@@ -816,9 +816,9 @@ class adLDAP {
         if ($attributes["company"]){ $mod["company"][0]=$attributes["company"]; }
         if ($attributes["change_password"]){ $mod["pwdLastSet"][0]=0; }
         if ($attributes["department"]){ $mod["department"][0]=$attributes["department"]; }
-        //if ($attributes["description"]){ $mod["description"][0]=$attributes["description"]; }
+        if ($attributes["description"]){ $mod["description"][0]=$attributes["description"]; }
         if ($attributes["display_name"]){ $mod["displayName"][0]=$attributes["display_name"]; }
-        //if ($attributes["email"]){ $mod["mail"][0]=$attributes["email"]; }
+        if ($attributes["email"]){ $mod["mail"][0]=$attributes["email"]; }
         if ($attributes["expires"]){ $mod["accountExpires"][0]=$attributes["expires"]; } //unix epoch format?
         if ($attributes["firstname"]){ $mod["givenName"][0]=$attributes["firstname"]; }
         //if ($attributes["home_directory"]){ $mod["homeDirectory"][0]=$attributes["home_directory"]; }
@@ -826,7 +826,7 @@ class adLDAP {
         //if ($attributes["initials"]){ $mod["initials"][0]=$attributes["initials"]; }
         if ($attributes["logon_name"]){ $mod["userPrincipalName"][0]=$attributes["logon_name"]; }
         //if ($attributes["manager"]){ $mod["manager"][0]=$attributes["manager"]; }  //UNTESTED ***Use DistinguishedName***
-        //if ($attributes["office"]){ $mod["physicalDeliveryOfficeName"][0]=$attributes["office"]; }
+        if ($attributes["office"]){ $mod["physicalDeliveryOfficeName"][0]=$attributes["office"]; }
         if ($attributes["password"]){ $mod["unicodePwd"][0]=$this->user()->encodePassword($attributes["password"]); }
         //if ($attributes["profile_path"]){ $mod["profilepath"][0]=$attributes["profile_path"]; }
         //if ($attributes["script_path"]){ $mod["scriptPath"][0]=$attributes["script_path"]; }

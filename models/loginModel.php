@@ -22,19 +22,17 @@ class loginModel extends Model {
 
         $this->getBibliotecas('src' . DS . "adLDAP");
         $adldap = new adLDAP();
-        $t = $adldap->authenticate($dados['nome'], $dados['senha']);
+        $adldap->authenticate($dados['nome'], $dados['senha']);
+        $t = $adldap->user()->infoCollection($dados['nome'], array("accountexpires", "displayName", "samaccountname"));
         return $t;
     }
-    
+
 //fim
 
-     public function logof() {
-         $adldap = new adLDAP();
-         $t = $adldap->close();
+    public function logof() {
+        $adldap = new adLDAP();
+        $t = $adldap->close();
         return $t;
     }
-   
-    
-    
 
 }

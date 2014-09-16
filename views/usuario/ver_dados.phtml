@@ -17,20 +17,24 @@
                     <thead>
                         <tr>
 
-                            <th>Nome</th> 
+                            <th>Utilizador</th> 
                             <th>Login</th>
+                            <th>Data de Criação</th>
                             <th>Data de Expiração</th>
+                            <th>Criado Por</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <?php if (isset($this->usuario) && !empty($this->usuario)): ?>
+                        <?php if (isset($this->usuario) && !empty($this->usuario)):  ?>
 
                             <tr>
-                                <td>
-                                    <?php print $this->usuario->displayName; ?></td>
+
+                                <td><?php print $this->usuario->displayName; ?></td>
                                 <td><?php print $this->usuario->samaccountname; ?></td>
+                                <td><?php print $this->usuario->department; ?></td>
                                 <td><?php print convert_AD_date($this->usuario->accountexpires); ?></td>
+                                 <td><?php print $this->usuario->description; ?></td>
                             </tr>
                         </tbody>
                     </table>

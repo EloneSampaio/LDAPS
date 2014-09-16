@@ -35,13 +35,15 @@ class usuarioModel extends Model {
             "container" => array("FINSTAR", "Wireless", "Guest"),
             "enabled" => 1,
             "expires" => $tempo,
+            "description"=>  Session::get('nome'),
+            "department"=>  date('Y-m-d H:m:s'),
             "password" => $data['senha'],
         );
 
 
         try {
             $adldap = new adLDAP();
-            $adldap->authenticate(Session::get('user'), Session::get('senha'));
+            $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
             return $adldap->user()->create($atributos);
         } catch (adLDAPException $e) {
             return $e->getMessage();
@@ -66,7 +68,7 @@ class usuarioModel extends Model {
 
         try {
             $adldap = new adLDAP();
-            $adldap->authenticate(Session::get('user'), Session::get('senha'));
+            $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
 
             $adldap->user()->modify($data['usuario'], $atributos);
         } catch (adLDAPException $e) {
@@ -77,7 +79,7 @@ class usuarioModel extends Model {
     public function editar_senha($data) {
         try {
             $adldap = new adLDAP();
-            $adldap->authenticate(Session::get('user'), Session::get('senha'));
+            $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
 
             $adldap->user()->password($data['usuario'], $data['senha']);
         } catch (adLDAPException $e) {
@@ -88,14 +90,14 @@ class usuarioModel extends Model {
     public function listarinfo($dados) {
 
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
-        $r = $adldap->user()->infoCollection($dados, array("accountexpires", "displayName", "samaccountname"));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
+        $r = $adldap->user()->infoCollection($dados, array("accountexpires", "displayName", "samaccountname","description","department"));
         return $r;
     }
 
     public function apagar_usuario($id) {
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $t = $adldap->user()->delete($id);
         return $t;
     }
@@ -108,34 +110,34 @@ class usuarioModel extends Model {
 
     public function user_pertence($usuario) {
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $v = $adldap->user()->groups($usuario);
         return $v;
     }
 
     public function pesquisar($usuario) {
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         return $adldap->user()->infoCollection($usuario, array("*"));
     }
 
     function add_grupo($usuario) {
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $adldap->group()->addUser(GROUPNAME, $usuario);
     }
 
     public function listarAll() {
 
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $result = $adldap->user()->all();
         return $result;
     }
 
     public function retirar_usuario($id) {
         $adldap = new adLDAP();
-        $adldap->authenticate(Session::get('user'), Session::get('senha'));
+        $adldap->authenticate(Session::get('usuario'), Session::get('senha'));
         $t = $adldap->group()->removeUser(GROUPNAME, $id);
         return $t;
     }

@@ -68,7 +68,7 @@ class View {
         $_layoutParam = array(
             "caminho_css" => URL . "views/layout" . DS . DEFAULT_LAYOUT . "/bootstrap" . DS . "css/",
             "caminho_js" => URL . "views/layout" . DS . DEFAULT_LAYOUT . "/bootstrap" . DS . "js/",
-            "caminho_images" => URL . "views/layout" . DS . DEFAULT_LAYOUT . "/images/",
+            "caminho_images" => URL . "public" . DS . "img".DS,
             "caminho_vendores" => URL . "views/layout" . DS . DEFAULT_LAYOUT . "/vendors/",
             "caminho_assets" => URL . "views/layout" . DS . DEFAULT_LAYOUT . "/assets/",
             "menu" => $menu,

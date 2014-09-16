@@ -9,6 +9,7 @@ class ErrorController extends Controller{
         
     }
     public function index() {
+         $this->view->setCss(array("style"));
         $this->view->titulo="PAGINA DE ERRO";
         $this->view->mensagem_erro=  $this->getError();
         $this->view->renderizar("index");
@@ -39,6 +40,7 @@ class ErrorController extends Controller{
     
     
     public function acesso($codigo){
+        $this->view->setCss(array("style"));
         $this->view->titulo="PAGINA DE ERRO";
         $this->view->mensagem_erro=  $this->getError($codigo);
         $this->view->renderizar("acesso");
