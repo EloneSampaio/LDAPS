@@ -9,7 +9,7 @@ function manipular_dados() {
 
     $(document).on('click', '#usuario', function() {
 
-        setTimeout("$('#pageContent').load('http://172.16.4.219/Ldaps/usuario/novo');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.4.108/Ldaps/usuario/novo');", 1000);
         $("#esconder").hide();
     });
 
@@ -17,7 +17,7 @@ function manipular_dados() {
 
         var id = $(this).attr('rel');
         console.log(id);
-        setTimeout("$('#pageContent').load('http://172.16.4.219/Ldaps/usuario/update/" + id + "');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.4.108/Ldaps/usuario/update/" + id + "');", 1000);
         $("#esconder").hide();
     });
 
@@ -29,9 +29,9 @@ function manipular_dados() {
             //recebe o nome do usuario via atributo rel no formulario
             var id = $(this).attr('rel');
 
-            $.post("http://172.16.4.219/Ldaps/usuario/deletar/", {'id': id})
+            $.post("http://172.16.4.108/Ldaps/usuario/deletar/", {'id': id})
                     .done(function(data) {
-                        var url = "http://172.16.4.219/Ldaps/usuario/";
+                        var url = "http://172.16.4.108/Ldaps/usuario/";
                         $(location).attr('href', url);
                     });
         }
@@ -43,9 +43,9 @@ function manipular_dados() {
             //recebe o nome do usuario via atributo rel no formulario
             var id = $(this).attr('rel');
 
-            $.post("http://172.16.4.219/Ldaps/usuario/retirar/", {'id': id})
+            $.post("http://172.16.4.108/Ldaps/usuario/retirar/", {'id': id})
                     .done(function(data) {
-                        var url = "http://172.16.4.219/Ldaps/usuario/";
+                        var url = "http://172.16.4.108/Ldaps/usuario/";
                         $(location).attr('href', url);
                     });
         }
@@ -57,7 +57,7 @@ function manipular_dados() {
 
         var id = $(this).attr('rel');
         console.log(id);
-        setTimeout("$('#pageContent').load('http://172.16.4.219/Ldaps/usuario/dados/?id=" + id + "');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.4.108/Ldaps/usuario/dados/?id=" + id + "');", 1000);
         $("#esconder").hide();
     });
 
@@ -65,7 +65,7 @@ function manipular_dados() {
     $(document).on('click', '#enviar', function() {
         var id = $("#nome").val();
 
-        setTimeout("$('#pageContent').load('http://172.16.4.219/Ldaps/usuario/pesquisa/?id=" + id + "');", 1000);
+        setTimeout("$('#pageContent').load('http://172.16.4.108/Ldaps/usuario/pesquisa/?id=" + id + "');", 1000);
         $("#esconder").hide();
 
     });

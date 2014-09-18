@@ -41,13 +41,13 @@
 			shortMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 			fullMonthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
 		
-			titleContentDate: "Set Date",
-			titleContentTime: "Set Time",
-			titleContentDateTime: "Set Date & Time",
+			titleContentDate: "Escolha Data",
+			titleContentTime: "Escolha Tempo",
+			titleContentDateTime: "Escolha a Data & Hora",
 		
 			buttonsToDisplay: ["HeaderCloseButton", "SetButton", "ClearButton"],
-			setButtonContent: "Set",
-			clearButtonContent: "Clear",
+			setButtonContent: "Seleccionar",
+			clearButtonContent: "Apagar",
 			setValueInTextboxOnEveryClick: false,
 		
 			animationDuration: 400,
